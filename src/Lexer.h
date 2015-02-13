@@ -9,6 +9,6 @@ class Lexer {
     char c;
     Token checkToken(char tok);
 public:
-    Lexer () { };
+    Lexer () : c('\0') { };
     Token nextToken();
 };

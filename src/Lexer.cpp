@@ -1,19 +1,20 @@
 #include "Lexer.h"
+#include <iostream>
+#include <stdio.h>
+#include <string>
+#include <ctype.h>
 
 Token Lexer::nextToken () {
     vector<char> token;
     if(c) {
         return checkToken(c);
     } else {
-        do {
-            scanf("%c", &c);
-        } while (isspace(c));
+        while (scanf("%c", &c) != EOF && isspace(c));
 
         if(isdigit(c)) {
             do {
                 token.push_back(c);
-                scanf("%c", &c);
-            } while (isdigit(c));
+            } while (scanf("%c", &c) != EOF && isdigit(c));
             
             if (isspace(c)) {
                 c = '\0';
@@ -24,8 +25,7 @@ Token Lexer::nextToken () {
         } else if(isalpha(c)) {
             do {
                 token.push_back(c);
-                scanf("%c", &c);
-            } while (isalpha(c));
+            } while (scanf("%c", &c) != EOF && isalpha(c));
 
             if (isspace(c)) {
                 c = '\0';
