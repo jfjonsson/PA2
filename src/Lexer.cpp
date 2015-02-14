@@ -1,8 +1,4 @@
 #include "Lexer.h"
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <ctype.h>
 
 Token Lexer::nextToken () {
     // Vector to construct tokens with multiple characters

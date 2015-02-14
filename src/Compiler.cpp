@@ -1,6 +1,4 @@
 #include "Parser.h"
-#include <stdio.h>
-#include <iostream>
 
 int main() {
     Lexer myLexer;
