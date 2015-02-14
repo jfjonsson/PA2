@@ -1,4 +1,7 @@
 **/*.swp
 **/*.out
-.DS_Store
+**/*.in
 **/*.zip
+**/*.DS_Store
+**/L_*
+**/S_*

@@ -1,10 +1,11 @@
-#include "Lexer.h"
+#include "Parser.h"
+#include <stdio.h>
+#include <iostream>
 
 int main() {
-    Lexer lex;
-    for (int i = 0; i < 5; i++) {
-        Token tok = lex.nextToken();
-        cout << "Lexeme: " << tok.lexeme << ", TokenCode: " << tok.tcode << endl;
-    }
+    Lexer myLexer;
+    Parser myParser(myLexer); 
+    myParser.parse();
+
     return 0;
 }
