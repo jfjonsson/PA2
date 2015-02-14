@@ -10,6 +10,14 @@ void error_msg (string msg) {
     exit(0);
 }
 
+int get_value (map<string, int> mp, stack<string> stk) {
+    if(mp.count(stk.top())) {
+        return mp[stk.top()];
+    } else {
+        return stoi(stk.top());
+    }
+}
+
 int main () {
     map<string, int> mp;
     stack<string> stk;
@@ -24,63 +32,31 @@ int main () {
                 error_msg("Missing argument!"); 
             }
         } else if (in == "PRINT") {
-            if(mp.count(stk.top())) {
-                cout << mp[stk.top()] << endl;
-            } else {
-                cout << stk.top();
-            }
+            cout << get_value(mp, stk) << endl;
             stk.pop();
         } else if (in == "ADD") {
-            if(mp.count(stk.top())) {
-                a = mp[stk.top()];
-            } else {
-                a = stoi(stk.top());
-            }
+            a = get_value(mp, stk);
             stk.pop();
-            if(mp.count(stk.top())) {
-                b = mp[stk.top()];
-            } else {
-                b = stoi(stk.top());
-            }
+            b = get_value(mp, stk);
             stk.pop();
             b += a;
             stk.push(std::to_string((long long)b));
         } else if (in == "SUB") {
-            if(mp.count(stk.top())) {
-                a = mp[stk.top()];
-            } else {
-                a = stoi(stk.top());
-            }
+            a = get_value(mp, stk);
             stk.pop();
-            if(mp.count(stk.top())) {
-                b = mp[stk.top()];
-            } else {
-                b = stoi(stk.top());
-            }
+            b = get_value(mp, stk);
             stk.pop();
             b -= a;
             stk.push(to_string((long long)b));
         } else if (in == "MULT") {
-            if(mp.count(stk.top())) {
-                a = mp[stk.top()];
-            } else {
-                a = stoi(stk.top());
-            }
+            a = get_value(mp, stk);
             stk.pop();
-            if(mp.count(stk.top())) {
-                b = mp[stk.top()];
-            } else {
-                b = stoi(stk.top());
-            }
+            b = get_value(mp, stk);
             stk.pop();
             b *= a;
             stk.push(to_string((long long)b));
         } else if (in == "ASSIGN") {
-            if(mp.count(stk.top())) {
-                VALUE = mp[stk.top()];
-            } else {
-                VALUE = stoi(stk.top());
-            }
+            VALUE = get_value(mp, stk);
             stk.pop();
             ID = stk.top();
             stk.pop();
@@ -90,5 +66,3 @@ int main () {
         }
     }
 }
-
-
