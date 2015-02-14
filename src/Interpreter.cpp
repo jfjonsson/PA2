@@ -10,6 +10,16 @@ void error_msg (string msg) {
     exit(0);
 }
 
+int get_value (map<string, int> map, stack<string> stack) {
+    // Check if variable in map, else use as value
+    if(map.count(stack.top())) {
+        return map[stack.top()];
+    } else {
+        return stoi(stack.top());
+    }
+    stack.pop();
+}
+
 int main () {
     map<string, int> mp; // Map to hold our variables
     stack<string> stk; // Stack to hold values and variables
@@ -31,20 +41,8 @@ int main () {
             }
             stk.pop();
         } else if (in == "ADD" || in == "SUB" || in == "MULT") {
-            // Check if variable in map, else use as value
-            if(mp.count(stk.top())) {
-                a = mp[stk.top()];
-            } else {
-                a = stoi(stk.top());
-            }
-            stk.pop();
-            // Check if variable in map, else use as value
-            if(mp.count(stk.top())) {
-                b = mp[stk.top()];
-            } else {
-                b = stoi(stk.top());
-            }
-            stk.pop();
+            a = get_value(mp, stk);
+            b  = get_value(mp, stk);
             if(in == "ADD") {
                 b += a;
             } else if (in == "SUB") {
@@ -54,13 +52,7 @@ int main () {
             }
             stk.push(to_string((long long)b));
         } else if (in == "ASSIGN") {
-            // Check if variable in map, else use as value
-            if(mp.count(stk.top())) {
-                VALUE = mp[stk.top()];
-            } else {
-                VALUE = stoi(stk.top());
-            }
-            stk.pop();
+            VALUE = get_value(mp, stk);
             ID = stk.top();
             stk.pop();
             mp.insert(make_pair(ID, VALUE));
