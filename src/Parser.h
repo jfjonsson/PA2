@@ -1,8 +1,6 @@
 #define PARSER_H
 
 #include "Lexer.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 class Parser {
 
